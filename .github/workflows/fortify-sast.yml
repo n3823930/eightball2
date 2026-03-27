@@ -1,0 +1,15 @@
+name: Fortify SAST Scan
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  Fortify-SAST:
+    # 指定使用你在地端主機 A 設定的 Self-hosted Runner 標籤
+    runs-on: fortify-scan-a 
+
+    steps:
+      # 步驟 1: 下載源碼
+      - name: Checkout Code
+        uses: actions/checkout@v4
