@@ -13,3 +13,12 @@ jobs:
       # 步驟 1: 下載源碼
       - name: Checkout Code
         uses: actions/checkout@v4
+
+    # 步驟 2: 執行 SAST 掃描 (Fortify SCA)
+      - name: Fortify SCA Scan
+        run: |
+          sourceanalyzer -b eightball2 -clean
+          # 針對 Java Console 程式碼進行轉譯 (請依據你的編譯工具調整，如 mvn 或直接編譯)
+          sourceanalyzer -b eightball2 . 
+          # 產生掃描結果檔案 (.fpr)
+          sourceanalyzer -b eightball2 -scan -f eightball2.fpr -sc classic
