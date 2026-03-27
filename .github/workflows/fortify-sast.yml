@@ -20,4 +20,4 @@ jobs:
         run: |
           sourceanalyzer -b eightball -clean
           sourceanalyzer -b eightball . 
-          sourceanalyzer -b eightball -scan -f eightball.fpr
+          sourceanalyzer -b eightball -scan -f eightball.fpr -sc classic
