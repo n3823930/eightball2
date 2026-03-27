@@ -16,9 +16,8 @@ jobs:
 
     # 步驟 2: 執行 SAST 掃描 (Fortify SCA)
       - name: Fortify SCA Scan
+        shell: cmd
         run: |
-          sourceanalyzer -b eightball2 -clean
-          # 針對 Java Console 程式碼進行轉譯 (請依據你的編譯工具調整，如 mvn 或直接編譯)
-          sourceanalyzer -b eightball2 . 
-          # 產生掃描結果檔案 (.fpr)
-          sourceanalyzer -b eightball2 -scan -f eightball2.fpr -sc classic
+          sourceanalyzer -b eightball -clean
+          sourceanalyzer -b eightball . 
+          sourceanalyzer -b eightball -scan -f eightball.fpr
