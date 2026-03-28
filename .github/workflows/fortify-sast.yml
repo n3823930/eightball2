@@ -24,7 +24,7 @@ jobs:
 
     # 步驟 3: 使用 fcli 登入並上傳 fpr 到主機 B (SSC)
       - name: Upload to SSC
-        shell: powershell  # 指定使用
+        shell: powershell  # 指定使用 powershell
         run: |
           # 登入 SSC
           fcli ssc session login --url http://192.168.11.128:8080/ssc --token 74a482c9-40df-4445-b94b-ddc06f9a2bd3
