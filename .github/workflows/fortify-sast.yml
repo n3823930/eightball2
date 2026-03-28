@@ -31,4 +31,4 @@ jobs:
           # 上傳並建立版本 (假設 SSC 上已存在對應的應用程式版本 eightball:latest)
           fcli ssc artifact upload -f eightball2.fpr --appversion eightball2:1
           # 使用 --query 篩選狀態為 REQUIRE_AUTH 的 artifact 並進行核准
-          fcli ssc artifact approve --appversion eightball2:1 --comment "Auto-approved by GitHub Actions"
+          fcli ssc artifact approve --appversion eightball2:1
