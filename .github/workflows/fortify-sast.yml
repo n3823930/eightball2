@@ -9,7 +9,7 @@ jobs:
     # 指定使用你在地端主機 A 設定的 Self-hosted Runner 標籤
     runs-on: fortify-scan-a 
     env:
-      SSC_URL: http://192.168.11.128:8080/ssc           # 範例: https://fortify.example.com
+      SSC_URL: http://192.168.11.128:8080/ssc
       SSC_TOKEN: 74a482c9-40df-4445-b94b-ddc06f9a2bd3       # 建議使用 SSC CIToken
       APP_NAME: "eightball2"
       APP_VERSION: "1"
