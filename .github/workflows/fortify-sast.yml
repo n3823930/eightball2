@@ -47,3 +47,9 @@ jobs:
           # 待上傳處理完成後，下載結果並轉為 GitHub 支援的 SARIF 格式
           # 注意：此步驟需確保 fcli 版本支援該指令，或使用 Fortify Vuln-Exporter 工具
           fcli ssc action run sarif-sast-report --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --file eightball2.sarif
+
+    # 步驟 5: 上傳 SARIF 檔案到 GitHub Security Tab
+      - name: Upload SARIF to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: eightball2.sarif
