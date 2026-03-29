@@ -12,7 +12,7 @@ jobs:
       SSC_URL: http://192.168.11.128:8080/ssc           # 範例: https://fortify.example.com
       SSC_TOKEN: 74a482c9-40df-4445-b94b-ddc06f9a2bd3       # 建議使用 SSC CIToken
       APP_NAME: "eightball2"
-      APP_VERSION: "1.0"
+      APP_VERSION: "1"
 
     steps:
       # 步驟 1: 下載源碼
