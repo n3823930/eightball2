@@ -39,7 +39,7 @@ jobs:
           Write-Host "Artifact uploaded with ID: $artifactId"
           # 執行自動核准
           Write-Host "Approving Artifact $artifactId..."
-          fcli ssc artifact approve $artifactId
+          fcli ssc artifact approve $artifactId -m="Auto-approved by GitHub Actions"
           # 等待處理完畢 (確保後續步驟可抓到掃描結果)
           Write-Host "Waiting for processing..."
           fcli ssc artifact wait-for --id $artifactId --status PROCESSED
