@@ -40,3 +40,10 @@ jobs:
           # 執行自動核准
           Write-Host "Approving Artifact $artifactId..."
           fcli ssc artifact approve $artifactId -m="Auto-approved by GitHub Actions"
+          
+    # 步驟 4: 從 SSC 取得結果並轉換為 SARIF
+      - name: Export SARIF from SSC
+        run: |
+          # 待上傳處理完成後，下載結果並轉為 GitHub 支援的 SARIF 格式
+          # 注意：此步驟需確保 fcli 版本支援該指令，或使用 Fortify Vuln-Exporter 工具
+          fcli ssc issue export --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --format sarif --output eightball2.sarif
