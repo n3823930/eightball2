@@ -8,6 +8,11 @@ jobs:
   Fortify-SAST:
     # 指定使用你在地端主機 A 設定的 Self-hosted Runner 標籤
     runs-on: fortify-scan-a 
+    env:
+      SSC_URL: http://192.168.11.128:8080/ssc           # 範例: https://fortify.example.com
+      SSC_TOKEN: 74a482c9-40df-4445-b94b-ddc06f9a2bd3       # 建議使用 SSC CIToken
+      APP_NAME: "eightball2"
+      APP_VERSION: "1.0"
 
     steps:
       # 步驟 1: 下載源碼
@@ -24,9 +29,17 @@ jobs:
 
     # 步驟 3: 使用 fcli 登入並上傳 fpr 到主機 B (SSC)
       - name: Upload to SSC
-        shell: powershell  # 指定使用 
+        shell: powershell  # 指定使用 powershell
         run: |
           # 登入 SSC
-          fcli ssc session login --url http://192.168.11.128:8080/ssc --token 74a482c9-40df-4445-b94b-ddc06f9a2bd3
-          # 上傳並建立版本 (假設 SSC 上已存在對應的應用程式版本 eightball:latest)
-          fcli ssc artifact upload -f eightball2.fpr --appversion eightball2:1
+          fcli ssc session login --url $env:SSC_URL --token $env:SSC_TOKEN
+          # 上傳FPR，並取得 artifactId
+          $uploadJson = fcli ssc artifact upload -f eightball2.fpr --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --output json
+          $artifactId = ($uploadJson | ConvertFrom-Json).id
+          Write-Host "Artifact uploaded with ID: $artifactId"
+          # 執行自動核准
+          Write-Host "Approving Artifact $artifactId..."
+          fcli ssc artifact approve --id $artifactId --comment "Auto-approved by GitHub Actions"
+          # 等待處理完畢 (確保後續步驟可抓到掃描結果)
+          Write-Host "Waiting for processing..."
+          fcli ssc artifact wait-for --id $artifactId --status PROCESSED
