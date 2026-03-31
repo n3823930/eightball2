@@ -12,8 +12,8 @@ jobs:
       security-events: write  # 允許上傳 SARIF 到 Security 分頁
       contents: read          # 允許讀取程式碼內容
     env:
-      SSC_URL: http://192.168.11.128:8080/ssc
-      SSC_TOKEN: 74a482c9-40df-4445-b94b-ddc06f9a2bd3       # 建議使用 SSC CIToken
+      SSC_URL: ${{ secrets.SSC_URL }}
+      SSC_TOKEN: ${{ secrets.SSC_TOKEN }}       # 建議使用 SSC CIToken
       APP_NAME: "eightball2"
       APP_VERSION: "1"
 
