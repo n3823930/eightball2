@@ -64,7 +64,7 @@ jobs:
           # 使用 fcli 查詢有沒有 Critical, High, Medium 
           $result = fcli ssc issue list --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --query "friority=='Critical' || friority=='High' || friority=='Medium'"
           if ($result -ne "No data") {
-            Write-Error "Security Gate Failed: Found Critical, High or Medium issues!"
+            Write-Host "Security Gate Failed: Found Critical, High or Medium issues!"
             exit 1
           } else {
             Write-Host "Security Gate Passed: No significant issues found."
