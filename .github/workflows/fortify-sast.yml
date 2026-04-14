@@ -43,9 +43,9 @@ jobs:
           # 執行自動核准
           Write-Host "Approving Artifact $artifactId..."
           fcli ssc artifact approve $artifactId -m="Auto-approved by GitHub Actions"
-          # 使用 fcli 查詢 Critical 數量
-          $count = fcli ssc issue list --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --query "severity=='Critical'"
-          Write-Host $count
+          # 使用 fcli 查詢有沒有 Critical, High, Medium 
+          $result = fcli ssc issue list --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --query "friority=='Critical' || friority=='High' || friority=='Medium'"
+          Write-Host $result
           
     # 步驟 4: 從 SSC 取得結果並轉換為 SARIF
       - name: Export SARIF from SSC
