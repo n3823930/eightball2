@@ -44,7 +44,7 @@ jobs:
           Write-Host "Approving Artifact $artifactId..."
           fcli ssc artifact approve $artifactId -m="Auto-approved by GitHub Actions"
           # 使用 fcli 查詢 Critical 數量
-          $count = fcli ssc issue list --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --query "'[fortify priority]':Critical" --count-only
+          $count = fcli ssc issue list --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --query "['fortify priority']=='Critical'" --count-only
           Write-Host "Found $count Critical issues."
           
     # 步驟 4: 從 SSC 取得結果並轉換為 SARIF
