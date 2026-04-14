@@ -62,7 +62,7 @@ jobs:
         shell: powershell  # 指定使用 powershell
         run: |
           # 使用 fcli 查詢有沒有 Critical, High, Medium 
-          $result = fcli ssc issue list --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --query "friority=='Critical' || friority=='Medium'"
+          $result = fcli ssc issue list --appversion "$($env:APP_NAME):$($env:APP_VERSION)" --query "friority=='Critical' || friority=='High' || friority=='Medium'"
           if ($result -ne "No data") {
             Write-Host "Security Gate Failed: Found Critical, High or Medium issues!"
             exit 1
