@@ -4,6 +4,10 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  # 提前啟用 Node.js 24 執行環境
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   Fortify-SAST:
     # 指定使用你在地端主機 A 設定的 Self-hosted Runner 標籤
